@@ -5,7 +5,7 @@ JDK 1.8
 Tomcat 7
 
 Intruçoes de Build e deploy:
-Link do projeto no GitHub: 
+Link do projeto no GitHub: https://github.com/felpsaps/LogisticAPI.git
  - Clonar o projeto
  - Criar o projeto no Eclipse
  - Executar a build do maven no arquivo pom.xml para baixar as dependencias
