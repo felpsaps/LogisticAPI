@@ -1,0 +1,3 @@
+Realização de requests com falta de parametros e/ou parametros errados.
+Cadastro duplicado
+Realização de request de steps em um cadastro que já está sendo processado no momento.

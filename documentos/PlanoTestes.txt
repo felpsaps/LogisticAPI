@@ -1,0 +1,51 @@
+Para a realização dos testes foi criado um client para usar a API.
+Este cliente se encontra em ..\logisticAPI\src\client\LogisticAPIClient.java
+
+Para este plano de testes foi levado em conta os requisitos nao funcionais do arquivo RequisitosNaoFuncionais.txt.
+O tempo total deste teste é de aproximadamente 20 segundos.
+
+1-)
+ Teste: Realizar o request de pegar instruções em um cadastro que não existe
+ Resultado esperado: Mensagem informando que o cadastro não existe
+ 
+2-)
+ Teste: Realizar o cadastro sem o parâmetro vehicle
+ Resultado esperado: Mensagem informando da falta do parâmetro
+ 
+3-)
+ Teste: Realizar o cadastro sem o parâmetro deliveryId
+ Resultado esperado: Mensagem informando da falta do parâmetro
+ 
+4-)
+ Teste: Realizar o cadastro sem o parâmetro packages
+ Resultado esperado: Mensagem informando da falta do parâmetro
+ 
+5-)
+ Teste: Realizar o cadastro com o parâmetro packages, porém nenhum item adicionado à ele
+ Resultado esperado: Mensagem informando que não há nenhum item
+ 
+6-)
+ Teste: Realizar o cadastro com todos os parâmetros corretos
+ Resultado esperado: Mensagem de cadastro realizado com sucesso
+ 
+7-)
+ Teste: Realizar o cadastro com todos os parâmetros corretos, mesmo cadastro anterior. (duplicado)
+ Resultado esperado: Mensagem informando que este cadastro já existe
+ 
+8-)
+ Teste: Realizar o request das intruções deste cadastro realizado
+ Resultado esperado: json contendo as intruções
+ 
+9-)
+ Teste: Realizar o cadastro de uma entrega com maior quantidade de itens
+ Resultado esperado: Mensagem de cadastro realizado com sucesso
+
+10-)
+ Teste: Realizar o request das intruções deste último cadastro logo em seguida.
+ Resultado esperado: Como este cadastro possui um número maior de entregas, ao realizar o request de instruções, elas ainda estarão sendo geradas.
+ Retorna portanto uma mensagem informando que as instruções estão sendo geradas, tentar novamente em alguns minutos.
+ 
+11-) 
+ Teste: Esperar um tempo após o último request e refazer o request de intruções.
+ Resultado esperado: Neste momento, a criação das instruções já deve estar concluída. Retorna o json com as instruções.
+	

@@ -1,0 +1,61 @@
+LogisticAPI
+
+Esta API possui 2 métodos:
+ Método POST para o cadastro de uma entrega.
+ Método GET para recuperar a lista de instruções.
+ 
+Cadastro de uma entrega:
+ - Para realizar o cadastro, é necessário enviar uma string json para a API.
+ - O formato do json é:
+ 
+	{
+		“vehicle” : “123456”,
+		“deliveryId” : “1234567890”
+		“packages” : [
+						{ "id": “1”, “weight”: “14.50”},
+						{ "id": “2”, “weight”: “12.15”},
+						{ "id": “3”, “weight”: “19.50”}
+					 ]
+	}
+	
+	vehicle: Id do veículo a ser cadastrado
+	deliveryId: Id da entrega a ser cadastrada
+	packages: Vetor com as encomendas
+		-id: id da encomenda
+		-weight: peso da encomenda
+		
+	Todos os parâmetros são obrigatórios. Packages deve ter no mínumo um item.
+	
+	Sintaxe do request:
+	http://localhost:8080/logisticAPI/api/delivery + json (para referência de como adicionar a string no request, verifique o arquivo LogisticAPIClient.java, método makePOSTRequest)
+	
+
+Request para recuperar as instruções:
+ http://localhost:8080/logisticAPI/api/step?deliveryId={id}&vehicle={id}
+ Exemplo:
+ http://localhost:8080/logisticAPI/api/step?deliveryId=123&vehicle=123
+ 
+ - deliveryId: Id da entrega
+ - vehicle: Id do veículo
+ - Os dois parâmetros são obrigatórios.
+ 
+ - O request retorna um json com as instruções no seguinte formato:
+ 
+ {
+	"steps":
+		[
+			{"deliveryId":2,"step":1,"from":"Zona de Abastecimento","to":"Zona do Caminhão"},
+			{"deliveryId":1,"step":2,"from":"Zona de Abastecimento","to":"Zona de Transferência"},
+			{"deliveryId":2,"step":3,"from":"Zona do Caminhão","to":"Zona de Transferência"},
+			{"deliveryId":3,"step":4,"from":"Zona de Abastecimento","to":"Zona do Caminhão"},
+			{"deliveryId":2,"step":5,"from":"Zona de Transferência","to":"Zona de Abastecimento"},
+			{"deliveryId":1,"step":6,"from":"Zona de Transferência","to":"Zona do Caminhão"},
+			{"deliveryId":2,"step":7,"from":"Zona de Abastecimento","to":"Zona do Caminhão"}
+		]
+ }
+ 
+  steps: Vetor com as instruções já ordenadas
+  deliveryId: id do pacote
+  step: O número da intrução. (Já é retornado em ordem crescente)
+  from: Onde o pacote se encontra
+  to: Para onde o pacote deve ser movido
